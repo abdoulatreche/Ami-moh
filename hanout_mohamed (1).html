@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanout Mohamed | حانوت محمد</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --cream: #fefae0;
+    --warm: #f4a261;
+    --dark: #1b1b1b;
+    --muted: #555;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(254,250,224,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e0d8b0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--green);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--warm); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    color: var(--muted); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green); color: white;
+    padding: 0.45rem 1.2rem; border-radius: 999px;
+    font-size: 0.85rem; font-weight: 500; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #1e5239; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 2.5rem 60px;
+    gap: 3rem;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -120px; top: -80px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, #b7e4c7 0%, transparent 70%);
+    opacity: 0.5;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--green-pale); color: var(--green);
+    font-size: 0.8rem; font-weight: 500;
+    padding: 0.3rem 0.9rem; border-radius: 999px;
+    margin-bottom: 1.2rem;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em { color: var(--green); font-style: normal; }
+  .hero p {
+    font-size: 1.05rem; color: var(--muted);
+    line-height: 1.7; max-width: 460px;
+    margin-bottom: 2rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green); color: white;
+    padding: 0.8rem 1.8rem; border-radius: 999px;
+    font-size: 0.95rem; font-weight: 500;
+    text-decoration: none; transition: transform 0.2s, background 0.2s;
+  }
+  .btn-primary:hover { background: #1e5239; transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid var(--green); color: var(--green);
+    padding: 0.8rem 1.8rem; border-radius: 999px;
+    font-size: 0.95rem; font-weight: 500;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-outline:hover { background: var(--green-pale); }
+
+  .hero-visual {
+    position: relative; display: flex;
+    justify-content: center; align-items: center;
+  }
+  .hero-card-main {
+    background: white; border-radius: 24px;
+    padding: 2rem; width: 300px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    position: relative; z-index: 2;
+  }
+  .hero-emoji { font-size: 3.5rem; margin-bottom: 0.8rem; display: block; }
+  .hero-card-main h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; margin-bottom: 0.4rem;
+  }
+  .hero-card-main p { font-size: 0.85rem; color: var(--muted); }
+  .hero-card-float {
+    position: absolute; background: white;
+    border-radius: 16px; padding: 0.8rem 1rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    font-size: 0.82rem; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hcf-1 { top: 20px; right: -20px; }
+  .hcf-2 { bottom: 40px; left: -30px; }
+  .hcf-icon { font-size: 1.2rem; }
+
+  /* STATS */
+  .stats {
+    background: var(--green);
+    padding: 2.5rem;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900; color: white;
+  }
+  .stat-label { font-size: 0.85rem; color: #a8d5b7; margin-top: 4px; }
+
+  /* CATEGORIES */
+  .section { padding: 5rem 2.5rem; }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-tag {
+    font-size: 0.8rem; font-weight: 500; color: var(--green);
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 0.8rem; display: block;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 900; color: var(--dark);
+  }
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+  }
+  .cat-card {
+    background: white; border-radius: 20px;
+    padding: 1.8rem 1.4rem; text-align: center;
+    border: 1.5px solid transparent;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .cat-card:hover { border-color: var(--green-light); transform: translateY(-4px); }
+  .cat-icon { font-size: 2.8rem; margin-bottom: 0.8rem; display: block; }
+  .cat-card h3 { font-size: 1rem; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
+  .cat-card p { font-size: 0.8rem; color: var(--muted); }
+
+  /* PRODUCTS */
+  .products-section { background: #f7f3e3; padding: 5rem 2.5rem; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.4rem; margin-top: 2rem;
+  }
+  .product-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+  .product-img {
+    height: 140px; display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; background: var(--cream);
+  }
+  .product-info { padding: 1rem 1.2rem; }
+  .product-badge {
+    font-size: 0.7rem; background: var(--green-pale); color: var(--green);
+    padding: 2px 8px; border-radius: 999px; font-weight: 500;
+    margin-bottom: 0.4rem; display: inline-block;
+  }
+  .product-info h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 4px; }
+  .product-info p { font-size: 0.78rem; color: var(--muted); }
+
+  /* WHY US */
+  .why-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.4rem;
+  }
+  .why-card {
+    padding: 1.8rem; border-radius: 20px;
+    background: white;
+  }
+  .why-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .why-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .why-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--green);
+    padding: 5rem 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .contact-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; color: white;
+    margin-bottom: 1rem;
+  }
+  .contact-text p { color: #a8d5b7; line-height: 1.7; margin-bottom: 1.5rem; }
+  .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 12px;
+    color: white; font-size: 0.95rem;
+  }
+  .contact-icon { font-size: 1.3rem; }
+  .contact-map {
+    background: white; border-radius: 20px;
+    overflow: hidden; height: 260px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.5rem;
+  }
+  .map-placeholder { font-size: 3rem; }
+  .map-addr {
+    font-size: 0.9rem; color: var(--muted); text-align: center; padding: 0 1rem;
+  }
+  .map-link {
+    display: inline-block; margin-top: 0.5rem;
+    background: var(--green); color: white;
+    padding: 0.5rem 1.2rem; border-radius: 999px;
+    font-size: 0.82rem; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .map-link:hover { background: #1e5239; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); color: #aaa;
+    text-align: center; padding: 1.5rem;
+    font-size: 0.82rem;
+  }
+  footer span { color: var(--green-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * { animation: fadeUp 0.6s ease both; }
+  .hero-badge { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.2s; }
+  .hero p { animation-delay: 0.3s; }
+  .hero-btns { animation-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding-top: 90px; }
+    .hero-visual { display: none; }
+    .stats { grid-template-columns: 1fr; gap: 1.2rem; }
+    .contact-section { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Hanout <span>Mohamed</span></div>
+  <ul class="nav-links">
+    <li><a href="#categories">Products</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Find Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Open Every Day</div>
+    <h1>Your Local<br><em>Neighborhood</em><br>Shop</h1>
+    <p>Fresh groceries, everyday essentials, and all your favorite products — all in one place in the heart of Bordj El Kiffan.</p>
+    <div class="hero-btns">
+      <a href="#categories" class="btn-primary">Browse Products</a>
+      <a href="#contact" class="btn-outline">Get Directions</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-float hcf-1">
+      <span class="hcf-icon">🥦</span> Fresh produce daily
+    </div>
+    <div class="hero-card-main">
+      <span class="hero-emoji">🛒</span>
+      <h3>حانوت محمد</h3>
+      <p>Rue El-Mokrani, Bordj El Kiffan</p>
+    </div>
+    <div class="hero-card-float hcf-2">
+      <span class="hcf-icon">⭐</span> Trusted by locals
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div>
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Products available</div>
+  </div>
+  <div>
+    <div class="stat-num">7/7</div>
+    <div class="stat-label">Open every day</div>
+  </div>
+  <div>
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Quality guaranteed</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+  <div class="section-header">
+    <span class="section-tag">What we sell</span>
+    <h2>Everything You Need,<br>All in One Place</h2>
+  </div>
+  <div class="categories">
+    <div class="cat-card">
+      <span class="cat-icon">🥛</span>
+      <h3>Dairy & Eggs</h3>
+      <p>Milk, cheese, yogurt</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">🍞</span>
+      <h3>Bakery</h3>
+      <p>Bread & pastries</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">🥫</span>
+      <h3>Canned & Dry Goods</h3>
+      <p>Pantry essentials</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">🧃</span>
+      <h3>Drinks & Beverages</h3>
+      <p>Juices, water & more</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">🍫</span>
+      <h3>Snacks & Sweets</h3>
+      <p>For every craving</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">🧴</span>
+      <h3>Household & Cleaning</h3>
+      <p>Home essentials</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="section-header">
+    <span class="section-tag">Popular picks</span>
+    <h2>Customer Favorites</h2>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">🍪</div>
+      <div class="product-info">
+        <span class="product-badge">Snacks</span>
+        <h4>Biscuits & Cookies</h4>
+        <p>Wide variety of brands</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🥚</div>
+      <div class="product-info">
+        <span class="product-badge">Daily</span>
+        <h4>Farm Eggs</h4>
+        <p>Free-range, quality eggs</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🧀</div>
+      <div class="product-info">
+        <span class="product-badge">Dairy</span>
+        <h4>Fresh Cheese</h4>
+        <p>Local and imported varieties</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">🫒</div>
+      <div class="product-info">
+        <span class="product-badge">Staple</span>
+        <h4>Olive Oil</h4>
+        <p>Premium quality, best price</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why">
+  <div class="section-header">
+    <span class="section-tag">Why choose us</span>
+    <h2>More Than Just a Shop</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-icon">🌿</span>
+      <h3>Fresh Every Day</h3>
+      <p>We restock fresh products daily so you always get the best quality at the best price.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">📍</span>
+      <h3>Right in Your Neighborhood</h3>
+      <p>Located on Rue El-Mokrani, Bordj El Kiffan — just steps away from home.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">💰</span>
+      <h3>Affordable Prices</h3>
+      <p>We keep our prices fair and competitive so every family can shop without worry.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🤝</span>
+      <h3>Friendly Service</h3>
+      <p>We know our customers by name. You're not just a shopper — you're family.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-text">
+    <h2>Come Visit Us</h2>
+    <p>We're open every day and ready to help you find everything you need. Stop by or call us anytime!</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <span>Rue El-Mokrani, Bordj El Kiffan 16058, Algeria</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🕐</span>
+        <span>Open daily — morning to evening</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🛒</span>
+        <span>All edible & household products available</span>
+      </div>
+    </div>
+  </div>
+  <div class="contact-map">
+    <span class="map-placeholder">🗺️</span>
+    <div class="map-addr">Rue El-Mokrani,<br>Bordj El Kiffan 16058</div>
+    <a class="map-link" href="https://maps.app.goo.gl/AUSwC2rUqAGR7Gu5A" target="_blank">Open in Google Maps</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 <span>Hanout Mohamed</span> · حانوت محمد · Bordj El Kiffan, Algeria
+</footer>
+
+</body>
+</html>
